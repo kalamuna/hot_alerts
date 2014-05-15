@@ -40,22 +40,24 @@ function hot_alerts_preprocess_fieldable_panels_pane(&$variables) {
     $variables['title'] = ($link) ? l($title, $url, array('attributes' => array('title'=> $title, 'class' => array('alert-link')))) : $title;
     // We don't want to load in the extra markup for the text field so render it as a normal text field
     $variables['elements']['field_hs_alerts_description']['#theme'] = 'markup';
-    // Load in our options
-    foreach ($variables['elements']['field_hs_alerts_options']['#items'] as $item => $attributes) {
-      $variables[$attributes['value']] = TRUE;
-    }
-    // Do some extra stuff for each option
-    if (isset($variables['dismissable']) && $variables['dismissable']) {
-      $variables['alert_classes'][] = 'alert-dismissable';
-    }
-    if (isset($variables['fa']) && $variables['fa']) {
-      $alert_icons = array(
-        'alert-success' => 'fa fa-lg fa-check-circle',
-        'alert-info' => 'fa fa-lg fa-info-circle',
-        'alert-warning' => 'fa fa-lg fa-warning',
-        'alert-danger' => 'fa fa-lg fa-frown-o',
-      );
-      $variables['icon'] = $alert_icons[$alert_status];
+    // Load in our options if applicable
+    if (isset($variables['elements']['field_hs_alerts_options']['#items'])) {
+      foreach ($variables['elements']['field_hs_alerts_options']['#items'] as $item => $attributes) {
+        $variables[$attributes['value']] = TRUE;
+      }
+      // Do some extra stuff for each option
+      if (isset($variables['dismissable']) && $variables['dismissable']) {
+        $variables['alert_classes'][] = 'alert-dismissable';
+      }
+      if (isset($variables['fa']) && $variables['fa']) {
+        $alert_icons = array(
+          'alert-success' => 'fa fa-lg fa-check-circle',
+          'alert-info' => 'fa fa-lg fa-info-circle',
+          'alert-warning' => 'fa fa-lg fa-warning',
+          'alert-danger' => 'fa fa-lg fa-frown-o',
+        );
+        $variables['icon'] = $alert_icons[$alert_status];
+      }
     }
   }
 }
