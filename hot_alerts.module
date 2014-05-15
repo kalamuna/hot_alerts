@@ -1,0 +1,85 @@
+<?php
+/**
+ * @file
+ * Code for the Bootstrap Alert module
+ */
+
+include_once 'hot_alerts.features.inc';
+
+/**
+ * Implementation of hook_entity_info_alter()
+ */
+function hot_alerts_entity_info_alter(&$entity_info) {
+  // Fieldable panel pane bundle to for Bootstrap Jumbotron
+  $entity_info['fieldable_panels_pane']['bundles']['hot_alerts'] = array(
+    'label' => t('Alert Message'),
+    'pane category' => t('HotWidgets!'),
+    'pane top level' => FALSE,
+    'admin' => array(
+      'path' => 'admin/structure/fieldable-panels-panes/manage/%fieldable_panels_panes_type',
+      'bundle argument' => 4,
+      'real path' => 'admin/structure/fieldable-panels-panes/manage/hot-alerts',
+      'access arguments' => array('administer fieldable panels panes'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_preprocess_fieldable_panels_pane().
+ */
+function hot_alerts_preprocess_fieldable_panels_pane(&$variables) {
+  if ($variables['elements']['#bundle'] === 'hot_alerts') {
+    // Get alert status class
+    $alert_status = $variables['elements']['field_alert_type']['#items'][0]['value'];
+    $variables['alert_classes'][] = $alert_status;
+    // Do stuff with the title
+    // @todo make this a propoer render array
+    $title = $variables['elements']['#fieldable_panels_pane']->title;
+    $link = $variables['elements']['#fieldable_panels_pane']->link;
+    $url = $variables['elements']['#fieldable_panels_pane']->path;
+    $variables['title'] = ($link) ? l($title, $url, array('attributes' => array('title'=> $title, 'class' => array('alert-link')))) : $title;
+    // We don't want to load in the extra markup for the text field so render it as a normal text field
+    $variables['elements']['field_hs_alerts_description']['#theme'] = 'markup';
+    // Load in our options
+    foreach ($variables['elements']['field_hs_alerts_options']['#items'][0] as $index => $value) {
+      $variables[$value] = TRUE;
+    }
+    // Do some extra stuff for each option
+    if (isset($variables['dismissable']) && $variables['dismissable']) {
+      $variables['alert_classes'][] = 'alert-dismissable';
+    }
+    if (isset($variables['fa']) && $variables['fa']) {
+      $alert_icons = array(
+        'alert-success' => 'fa fa-lg fa-check-circle',
+        'alert-info' => 'fa fa-lg fa-info-circle',
+        'alert-warning' => 'fa fa-lg fa-warning',
+        'alert-danger' => 'fa fa-lg fa-frown-o',
+      );
+      $variables['icon'] = $alert_icons[$alert_status];
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_panels_pane().
+ */
+function hot_alerts_preprocess_panels_pane(&$variables) {
+  if (isset($variables['content']['#bundle']) && $variables['content']['#bundle'] === 'hot_alerts' ) {
+    $variables['title'] = '';
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function hot_alerts_theme(){
+  return array(
+    'fieldable_panels_pane__hot_alerts' => array(
+      'template' => 'templates/fieldable-panels-pane--hot-alerts',
+      'render element' => 'elements',
+      'type' => 'module'
+    )
+  );
+}
+
+
