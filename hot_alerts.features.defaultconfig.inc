@@ -63,9 +63,10 @@ function hot_alerts_defaultconfig_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'hidden',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
+          'type' => 'list_key',
+          'weight' => 2,
         ),
       ),
       'entity_type' => 'fieldable_panels_pane',
@@ -145,7 +146,68 @@ function hot_alerts_defaultconfig_field_default_fields() {
           'rows' => 5,
         ),
         'type' => 'text_textarea',
-        'weight' => 2,
+        'weight' => 3,
+      ),
+    ),
+  );
+
+  // Exported field: 'fieldable_panels_pane-hot_alerts-field_hs_alerts_options'.
+  $fields['fieldable_panels_pane-hot_alerts-field_hs_alerts_options'] = array(
+    'field_config' => array(
+      'active' => 1,
+      'cardinality' => -1,
+      'deleted' => 0,
+      'entity_types' => array(),
+      'field_name' => 'field_hs_alerts_options',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => 0,
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          'dismissable' => 'Dismissable',
+          'fa' => 'Use FontAwesome icons to provide context',
+        ),
+        'allowed_values_function' => '',
+      ),
+      'translatable' => 0,
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'hot_alerts',
+      'default_value' => array(
+        0 => array(
+          'value' => 'fa',
+        ),
+      ),
+      'deleted' => 0,
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 3,
+        ),
+      ),
+      'entity_type' => 'fieldable_panels_pane',
+      'field_name' => 'field_hs_alerts_options',
+      'label' => 'Options',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_buttons',
+        'weight' => 1,
       ),
     ),
   );
@@ -154,6 +216,7 @@ function hot_alerts_defaultconfig_field_default_fields() {
   // Included for use with string extractors like potx.
   t('Alert Type');
   t('Description');
+  t('Options');
 
   return $fields;
 }
@@ -183,13 +246,13 @@ function hot_alerts_defaultconfig_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'title' => array(
-          'weight' => '1',
+          'weight' => '2',
         ),
       ),
       'display' => array(
         'title' => array(
           'default' => array(
-            'weight' => '-5',
+            'weight' => '0',
             'visible' => TRUE,
           ),
         ),

@@ -41,8 +41,8 @@ function hot_alerts_preprocess_fieldable_panels_pane(&$variables) {
     // We don't want to load in the extra markup for the text field so render it as a normal text field
     $variables['elements']['field_hs_alerts_description']['#theme'] = 'markup';
     // Load in our options
-    foreach ($variables['elements']['field_hs_alerts_options']['#items'][0] as $index => $value) {
-      $variables[$value] = TRUE;
+    foreach ($variables['elements']['field_hs_alerts_options']['#items'] as $item => $attributes) {
+      $variables[$attributes['value']] = TRUE;
     }
     // Do some extra stuff for each option
     if (isset($variables['dismissable']) && $variables['dismissable']) {
