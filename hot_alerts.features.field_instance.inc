@@ -10,7 +10,8 @@
 function hot_alerts_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'fieldable_panels_pane-hot_alerts-field_alert_type'
+  // Exported field_instance:
+  // 'fieldable_panels_pane-hot_alerts-field_alert_type'.
   $field_instances['fieldable_panels_pane-hot_alerts-field_alert_type'] = array(
     'bundle' => 'hot_alerts',
     'default_value' => array(
@@ -45,7 +46,8 @@ function hot_alerts_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'fieldable_panels_pane-hot_alerts-field_hs_alerts_description'
+  // Exported field_instance:
+  // 'fieldable_panels_pane-hot_alerts-field_hs_alerts_description'.
   $field_instances['fieldable_panels_pane-hot_alerts-field_hs_alerts_description'] = array(
     'bundle' => 'hot_alerts',
     'default_value' => NULL,
@@ -83,7 +85,8 @@ function hot_alerts_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'fieldable_panels_pane-hot_alerts-field_hs_alerts_options'
+  // Exported field_instance:
+  // 'fieldable_panels_pane-hot_alerts-field_hs_alerts_options'.
   $field_instances['fieldable_panels_pane-hot_alerts-field_hs_alerts_options'] = array(
     'bundle' => 'hot_alerts',
     'default_value' => array(
