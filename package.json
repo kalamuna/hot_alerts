@@ -1,14 +1,13 @@
 {
-  "name": "hot_buttons",
+  "name": "hot_alerts",
   "version": "0.0.1",
-  "description": "Buttons fields and fieldable buttons",
-  "main": "index.js",
+  "description": "FPP Alert Widget",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/kalamuna/hot_tables.git"
+    "url": "git://github.com/kalamuna/hot_alerts.git"
   },
   "keywords": [
     "Drupal",
@@ -18,7 +17,7 @@
   "author": "Kalamuna LLC",
   "license": "GPL-2.0",
   "bugs": {
-    "url": "https://github.com/kalamuna/hot_tables/issues"
+    "url": "https://github.com/kalamuna/hot_alerts/issues"
   },
-  "homepage": "https://github.com/kalamuna/hot_tables"
+  "homepage": "https://github.com/kalamuna/hot_alerts"
 }
